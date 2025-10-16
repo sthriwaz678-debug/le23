@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        /* layout & styles */
+        body{font-family:Segoe UI,Roboto,Arial,sans-serif;background:#f4f7fb;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0}
+        .container{background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(10,20,50,.08);width:340px}
+        h2{margin:0 0 12px;font-size:18px;color:#222}
+        label{display:block;font-size:14px;color:#444;margin-top:8px}
+        input[type="number"]{width:100%;padding:8px;border:1px solid #d6dbe6;border-radius:4px;margin-top:6px;font-size:15px}
+        button{width:100%;margin-top:12px;padding:10px;border:0;border-radius:6px;background:#0366d6;color:#fff;font-size:15px;cursor:pointer}
+        button:active{transform:translateY(1px)}
+        .result{margin-top:12px;font-weight:600;color:#111}
+
+        /* end of styles */
+        </style>
+
+        <div class="container">
+            <h2>Multiply two numbers</h2>
+            <label>
+                First number
+                <input id="num1" type="number" value="2" />
+            </label>
+            <label>
+                Second number
+                <input id="num2" type="number" value="3" />
+            </label>
+            <button id="multiplyBtn">Multiply</button>
+            <div class="result" id="output">Result: —</div>
+        </div>
+
+        <script>
+        /* function that performs multiplication using parameters */
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        /* read values, call multiply, and display result */
+        function computeAndShow() {
+            const a = Number(document.getElementById('num1').value);
+            const b = Number(document.getElementById('num2').value);
+            const product = multiply(a, b);
+            document.getElementById('output').textContent = 'Result: ' + product;
+        }
+
+        document.getElementById('multiplyBtn').addEventListener('click', computeAndShow);
+
+        /* allow pressing Enter inside inputs to trigger calculation */
+        ['num1','num2'].forEach(id =>
+            document.getElementById(id).addEventListener('keydown', e => {
+                if (e.key === 'Enter') computeAndShow();
+            })
+        );
+        </script>
+    </style>
+</body>
+</html>
